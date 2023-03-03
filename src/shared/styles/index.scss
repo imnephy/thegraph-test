@@ -1,0 +1,39 @@
+@import-normalize;
+
+@import "./fonts.scss";
+@import "./constants.scss";
+
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 16px;
+
+	@media (max-width: 1441px) {
+		font-size: 1.12vw;
+	}
+}
+
+body {
+	margin: 0;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+	font-size: 1rem;
+}
+
+:root {
+	font-family: "Avenir Next Cyr", sans-serif;
+	font-style: normal;
+	font-weight: normal;
+	color-scheme: light dark;
+	color: var(--primary-text-color);
+	background-color: var(--bg-color);
+}
