@@ -51,7 +51,24 @@ export type IImageProperties<Responsive extends boolean> = Omit<
   format?: 'webp' | 'jpeg' | 'png' | 'avif'
   alt: string
 }
-
+/**
+ * 
+ * @example 
+ * <Image
+    alt=""
+    style={{
+      width: '40rem',
+    }}
+    sizes={{
+      lg: '40rem',
+      md: '30rem',
+      sm: '20rem',
+    }}
+    responsive
+    src="/assets/random/random.jpg"
+    loading="lazy"
+  /> 
+ */
 export function Image<Responsive extends boolean = true>(
   props: IImageProperties<Responsive>,
 ) {

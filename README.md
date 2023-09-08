@@ -51,3 +51,23 @@ git clone https://github.com/Neca-development/react-template.git <ИМЯ ПАК�
 4. Обязательно Используем реэкспотры для реализации [public api](https://feature-sliced.design/ru/docs/reference/public-api)
 5. Не используем `any`, используем `as` и `satisfies` где необходимо
 6. Каталог `pages`: В каждой папке со страницей должен присутстовать файл `index.page.ts` в котором находится сам компонент страницы => _пример_ `pages/about/index.page.ts`
+
+## Работа с изображениями
+
+1. Добавляем изображения в папку `public/assets/**`
+2. Используем команду `npm run generate-images`
+3. Используем тэг `<Image />` со свойством `responsive=true`
+
+```TypeScript
+import { Image } from "@shared/ui/image";
+
+<Image
+  alt=""
+  sizes={{
+    lg: '40rem',
+  }}
+  responsive
+  src="/assets/random/random.jpg"
+  loading="lazy"
+/>
+```
