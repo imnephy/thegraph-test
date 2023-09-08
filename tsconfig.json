@@ -1,45 +1,68 @@
 {
-	"compilerOptions": {
-		"lib": ["dom", "dom.iterable", "esnext"],
-		"module": "esnext",
-		"moduleResolution": "node",
-		"resolveJsonModule": true,
-		"removeComments": true,
-		"preserveConstEnums": true,
-		"strict": true,
-		"alwaysStrict": true,
-		"strictNullChecks": true,
-		"noUncheckedIndexedAccess": true,
-		"noImplicitAny": true,
-		"noImplicitReturns": true,
-		"noImplicitThis": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"allowUnreachableCode": false,
-		"noFallthroughCasesInSwitch": true,
-		"target": "es5",
-		"outDir": "out",
-		"declaration": true,
-		"sourceMap": true,
-		"esModuleInterop": true,
-		"allowSyntheticDefaultImports": true,
-		"allowJs": false,
-		"skipLibCheck": true,
-		"forceConsistentCasingInFileNames": true,
-		"jsx": "preserve",
-		"noEmit": true,
-		"isolatedModules": true,
-		"incremental": true,
-		"baseUrl": ".",
-		"paths": {
-			"@pages/*": ["src/pages/*"],
-			"@entities/*": ["src/entities/*"],
-			"@shared/*": ["src/shared/*"],
-			"@features/*": ["src/features/*"],
-			"@widgets/*": ["src/widgets/*"],
-			"@public/*": ["public/*"]
-		}
-	},
-	"exclude": ["./out/**/*", "./node_modules/**/*", "**/*.cy.ts"],
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES2020"
+    ],
+    "allowJs": false,
+    "skipLibCheck": false,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ES2020",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "baseUrl": "./",
+    "types": [
+      "vite-plugin-pwa/client",
+      "node",
+      "jest",
+      "@testing-library/jest-dom",
+      "./src/vite-env.d.ts",
+    ],
+    "paths": {
+      "@shared/*": [
+        "src/shared/*"
+      ],
+      "@app/*": [
+        "src/app/*"
+      ],
+      "@pages/*": [
+        "src/pages/*"
+      ],
+      "@public/*": [
+        "public/*"
+      ],
+      "@features/*": [
+        "src/features/*"
+      ],
+      "@entities/*": [
+        "src/entities/*"
+      ],
+      "@widgets/*": [
+        "src/widgets/*"
+      ],
+    }
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "src",
+    "api",
+    "jest.setup.js",
+    "jest.config.js",
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }
