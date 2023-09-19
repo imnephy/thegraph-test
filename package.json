@@ -9,7 +9,9 @@
   "private": "true",
   "scripts": {
     "dev": "vite --host",
-    "build": "tsc && vite build",
+    "build:development": "tsc && vite build --mode development",
+    "build:staging": "tsc && vite build --mode staging",
+    "build:production": "tsc && vite build --mode production",
     "preview": "vite preview",
     "https-preview": "serve dist",
     "lint": "eslint src --ext .ts,.tsx",
