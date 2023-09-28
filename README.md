@@ -72,6 +72,7 @@ import { Image } from "@shared/ui/image";
 />
 ```
 
+
 ## 📚Библиотеки
 
 1. 🍞**react-hoat-toast**  
