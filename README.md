@@ -54,10 +54,12 @@ git clone --depth 1 https://github.com/Neca-development/react-template.git <ИМ
 
 ## Работа с изображениями
 
+### Растр
 1. Добавляем изображения в папку `public/assets/**`
 2. Используем команду `npm run generate-images`
 3. Используем тэг `<Image />` со свойством `responsive=true`
 
+Пример:
 ```TypeScript
 import { Image } from "@shared/ui/image";
 
@@ -70,4 +72,28 @@ import { Image } from "@shared/ui/image";
   src="/assets/random/random.jpg"
   loading="lazy"
 />
+```
+
+### SVG
+1. Добавляем иконку в `src/shared/ui/icon/`
+2. Добавляем импорт в файл `src/shared/ui/icon/icon.component.tsx`
+  Пример:   
+    ```TypeScript
+    const search = lazy(() => import('./search.svg'))
+
+    const ICONS_MAP = {
+      search,
+    } as const
+    ```
+
+Пример:
+```TypeScript
+import { IconComponent } from "@shared/ui/icon";
+import { Suspense } from 'react'
+
+<Suspense>
+  <IconComponent
+    alt="search icon"
+    name="search" />
+</Suspense>
 ```
