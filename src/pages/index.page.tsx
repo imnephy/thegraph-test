@@ -4,7 +4,7 @@ import { Image } from '@shared/ui/image'
 export const HomePage = () => {
   return (
     <>
-      <Meta description="Unistory next" title="Unistory" />
+      <Meta description="Unistory" title="Unistory" />
       <h1>🦄⚡ Unistory vite template</h1>
       <h2>{process.env.VITE_APP_URL || null}</h2>
       <Image
