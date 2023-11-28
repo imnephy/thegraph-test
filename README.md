@@ -1,3 +1,7 @@
+# 🦄⚡ deployed to:
+
+https://snazzy-cannoli-f53e37.netlify.app/
+
 # 🦄⚡ VITE template
 
 [comment]: <> (startof installation instruction)
