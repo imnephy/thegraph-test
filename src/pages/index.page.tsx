@@ -8,6 +8,7 @@ export const testQuery = gql`
       id
       contentURI
       createdAtTimestamp
+      block
       creator {
         id
       }
@@ -31,10 +32,16 @@ export const HomePage = () => {
   })
   console.log(result.data)
   const onSelectTokensChangeHandler = (e: React.SyntheticEvent) => {
-    setArguments((previous) => ({ ...previous, firstTokens: Number(e.target.value) }))
+    setArguments((previous) => ({
+      ...previous,
+      firstTokens: Number((e.target as HTMLSelectElement).value),
+    }))
   }
   const onSelectUsersChangeHandler = (e: React.SyntheticEvent) => {
-    setArguments((previous) => ({ ...previous, firstUsers: Number(e.target.value) }))
+    setArguments((previous) => ({
+      ...previous,
+      firstUsers: Number((e.target as HTMLSelectElement).value),
+    }))
   }
   return (
     <>
@@ -69,14 +76,16 @@ export const HomePage = () => {
                 <tr>
                   <th>token id</th>
                   <th>address</th>
+                  <th>block</th>
                 </tr>
               </thead>
               <tbody>
-                {result?.data?.payrues.map((item) => {
+                {result?.data?.payrues.map((item: any) => {
                   return (
                     <tr key={item.id}>
                       <td>{item.id}</td>
                       <td>{item.creator.id}</td>
+                      <td>{item.block}</td>
                     </tr>
                   )
                 })}
@@ -93,11 +102,11 @@ export const HomePage = () => {
                 </tr>
               </thead>
               <tbody>
-                {result?.data?.users.map((item) => {
+                {result?.data?.users.map((item: any) => {
                   return (
                     <tr key={item.id}>
                       <td>{item.id}</td>
-                      <td>{item.created.map((item) => item.id).join(',')}</td>
+                      <td>{item.created.map((item_: any) => item_.id).join(',')}</td>
                     </tr>
                   )
                 })}
