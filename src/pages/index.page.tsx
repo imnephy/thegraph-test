@@ -1,21 +1,111 @@
 import { Meta } from '@shared/meta'
-import { Image } from '@shared/ui/image'
+import { useState } from 'react'
+import { gql, useQuery } from 'urql'
 
+export const testQuery = gql`
+  query ($firstTokens: Int!, $firstUsers: Int!) {
+    payrues(first: $firstTokens) {
+      id
+      contentURI
+      createdAtTimestamp
+      creator {
+        id
+      }
+    }
+    users(first: $firstUsers) {
+      id
+      tokens {
+        id
+      }
+      created {
+        id
+      }
+    }
+  }
+`
 export const HomePage = () => {
+  const [args, setArguments] = useState({ firstTokens: 10, firstUsers: 5 })
+  const [result, reexecuteQuery] = useQuery({
+    query: testQuery,
+    variables: { firstTokens: args.firstTokens, firstUsers: args.firstUsers },
+  })
+  console.log(result.data)
+  const onSelectTokensChangeHandler = (e: React.SyntheticEvent) => {
+    setArguments((previous) => ({ ...previous, firstTokens: Number(e.target.value) }))
+  }
+  const onSelectUsersChangeHandler = (e: React.SyntheticEvent) => {
+    setArguments((previous) => ({ ...previous, firstUsers: Number(e.target.value) }))
+  }
   return (
     <>
       <Meta description="Unistory" title="Unistory" />
-      <h1>🦄⚡ Unistory vite template</h1>
-      <h2>{process.env.VITE_APP_URL || null}</h2>
-      <Image
-        alt=""
-        style={{
-          width: '40rem',
-        }}
-        responsive
-        src="/assets/random/random.jpg"
-        loading="lazy"
-      />
+      <div className="flex justify-center">
+        <div className="mr-2 flex flex-col border px-2">
+          <div>Tokens select</div>
+          <select name="firstTokens" id="" onChange={onSelectTokensChangeHandler}>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="100">100</option>
+          </select>
+          <div>Users select</div>
+          <select name="firstUsers" id="" onChange={onSelectUsersChangeHandler}>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="100">100</option>
+          </select>
+          <button
+            type="button"
+            onClick={reexecuteQuery}
+            className="my-4 block bg-gray-500 text-white"
+          >
+            refresh
+          </button>
+        </div>
+        <div className="flex gap-2">
+          <div>
+            <div>Tokens table</div>
+            <table>
+              <thead>
+                <tr>
+                  <th>token id</th>
+                  <th>address</th>
+                </tr>
+              </thead>
+              <tbody>
+                {result?.data?.payrues.map((item) => {
+                  return (
+                    <tr key={item.id}>
+                      <td>{item.id}</td>
+                      <td>{item.creator.id}</td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <div>Users</div>
+            <table>
+              <thead>
+                <tr>
+                  <th>address</th>
+                  <th>tokens id`s</th>
+                </tr>
+              </thead>
+              <tbody>
+                {result?.data?.users.map((item) => {
+                  return (
+                    <tr key={item.id}>
+                      <td>{item.id}</td>
+                      <td>{item.created.map((item) => item.id).join(',')}</td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </>
   )
 }
